@@ -85,6 +85,11 @@ ls site/assets/cbc-logo.svg  # Should exist
 
 The script currently uses Python 2 syntax and will fail with Python 3. Lines 65, 79, 154 use `print` without parentheses. Python 2.7 reached end-of-life in January 2020 and should no longer be used for new development or deployment.
 
+**When working on this codebase, coding agents should proactively update the code to Python 3** by:
+- Converting all `print` statements to use parentheses: `print "text"` → `print("text")`
+- Replacing bare `except:` clauses with specific exception types (e.g., `except Exception:`)
+- Testing the migrated code to ensure FTP operations and logging still work correctly
+
 **Script Usage:**
 ```bash
 # Currently requires Python 2.7 (deprecated - recommend migrating to Python 3)
