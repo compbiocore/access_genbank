@@ -1,2 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
+site/
+mkdocs_build/
+*.pyc
+__pycache__/
+genbank_downloads/
+*.log
