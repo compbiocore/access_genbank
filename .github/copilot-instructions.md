@@ -7,7 +7,7 @@
 - Documentation built with MkDocs and deployed to GitHub Pages
 - No formal test suite
 
-**Language & Compatibility:** The code is written in **Python 2.7 syntax** (uses `print` statements without parentheses, bare `except:` clauses). This is **CRITICAL** - the script will NOT run with Python 3 without modifications due to syntax incompatibilities.
+**Language & Compatibility:** The code is currently written in **Python 2.7 syntax** (uses `print` statements without parentheses, bare `except:` clauses). **RECOMMENDATION:** This code should be updated to Python 3, as Python 2.7 reached end-of-life in January 2020. The script will NOT run with Python 3 without modifications due to syntax incompatibilities.
 
 **Primary Dependencies:**
 - Standard Python libraries: `ftplib`, `logging`, `os`, `sys`, `argparse`, `subprocess`
@@ -81,13 +81,13 @@ ls site/assets/cbc-logo.svg  # Should exist
 
 ## Running the Script
 
-**CRITICAL: Python 2.7 Required**
+**RECOMMENDATION: Update to Python 3**
 
-The script uses Python 2 syntax and will fail with Python 3. Lines 65, 79, 154 use `print` without parentheses.
+The script currently uses Python 2 syntax and will fail with Python 3. Lines 65, 79, 154 use `print` without parentheses. Python 2.7 reached end-of-life in January 2020 and should no longer be used for new development or deployment.
 
 **Script Usage:**
 ```bash
-# Python 2.7 only (if available)
+# Currently requires Python 2.7 (deprecated - recommend migrating to Python 3)
 python download_genbank_genomes.py -h
 
 # Common command pattern
@@ -157,17 +157,18 @@ python download_genbank_genomes.py \
    mkdocs build --verbose --clean
    ```
 
-2. **Script changes (requires Python 2.7):**
-   - If Python 2.7 is available: `python download_genbank_genomes.py -dr True`
-   - If modifying for Python 3: Test all print statements and exception handling
+2. **Script changes (requires migration to Python 3):**
+   - Script currently uses Python 2.7 syntax (deprecated)
+   - When migrating to Python 3: Update all print statements and exception handling
+   - Test with: `python download_genbank_genomes.py -dr True`
 
 3. **Visual inspection:**
    - Review docs with `mkdocs serve` at http://127.0.0.1:8000/
 
 ## Key Code Patterns & Conventions
 
-### Python 2 Syntax Issues
-**CRITICAL:** When modifying Python code, be aware these are Python 2 patterns:
+### Python 2 Syntax Issues (Should Be Updated to Python 3)
+**RECOMMENDATION:** When modifying Python code, update these Python 2 patterns to Python 3:
 - `print "text"` → Change to `print("text")` for Python 3
 - Bare `except:` clauses (lines 90, 176, 189) → Should specify exception types
 - Line 65: `print "Error. You can only specify one or the other\n"`
@@ -205,7 +206,7 @@ Uses Python's logging module with DEBUG level, writes to `genbank_download_app.l
 
 ### Issue: Python script fails with "SyntaxError: Missing parentheses in call to 'print'"
 **Cause:** Python 3 running Python 2 code  
-**Solution:** Use Python 2.7, or convert print statements to Python 3 syntax
+**Solution:** Convert print statements to Python 3 syntax. Python 2.7 is deprecated and should not be used.
 
 ### Issue: Missing assets in built documentation
 **Cause:** Forgot to download dark_mode.css and cbc-logo.svg  
@@ -224,7 +225,7 @@ Uses Python's logging module with DEBUG level, writes to `genbank_download_app.l
 4. Commit changes to markdown files only (not `site/`)
 
 ### For Python Script Changes:
-1. **IMPORTANT:** Maintain Python 2.7 compatibility OR explicitly migrate to Python 3
+1. **IMPORTANT:** Migrate code to Python 3 (Python 2.7 is deprecated and EOL since 2020)
 2. Test with dry run: `python download_genbank_genomes.py -dr True`
 3. Check logging output: `tail genbank_download_app.log`
 4. Verify FTP operations don't break
